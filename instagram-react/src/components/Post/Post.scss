@@ -1,0 +1,28 @@
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    &__image {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .post-footer {
+        display: flex;
+        justify-content: space-between;
+
+        .likes,
+        .comments {
+            font-size: 12px;
+        }
+    }
+}
