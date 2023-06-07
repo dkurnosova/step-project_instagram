@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import UserPage from "./pages/UserPage";
+import MainPage from "./pages/MainPage/MainPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 const AppRoutes = () => {
    return (
       <Routes>
          <Route path="/" element={<MainPage />} />
-         <Route path="/:username" element={<UserPage />} />
+         <Route path="/:userId" element={<UserPage />} />
       </Routes>
    );
 };

@@ -1,0 +1,19 @@
+.likes-container{
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.like-img {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.like-img--not-liked:hover {
+    fill: rgb(142, 142, 142);
+}
+
+.like-counter {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+}

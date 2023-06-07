@@ -1,0 +1,10 @@
+.comments__item {
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 3px;
+
+   .comment__text {
+    margin-left: 10px;
+    font-size: 11px;
+   }
+}

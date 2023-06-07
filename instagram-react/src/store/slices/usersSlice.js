@@ -1,32 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
+import getUser from "../../assets/getUser";
 
 const usersSlice = createSlice({
    name: "users",
    initialState: {
-      users: [],
       isLoading: true,
-      authorizedUser: "646a232b37584db1551d13e9",
+      authorizedUser: {},
    },
-    reducers: {
-        getUsers: (state, action) => {
-            state.users = action.payload;
-        },
-        setIsLoading: (state, action) => {
-            state.isLoading = action.payload;
-        }
-    }
+   reducers: {
+      setIsLoading: (state, action) => {
+         state.isLoading = action.payload;
+      },
+      getAuthorizedUser: (state, action) => {
+         state.authorizedUser = action.payload;
+      },
+      editSubscribers: (state, action) => {
+         const subscriptionsIds = [...state.authorizedUser.subscriptions];
+         const index = subscriptionsIds.indexOf(action.payload);
+         if (index === -1) {
+               subscriptionsIds.push(action.payload)
+         } else {
+               subscriptionsIds.splice(index, 1);
+         }
+         state.authorizedUser.subscriptions = subscriptionsIds;
+      },
+
+   },
 });
 
-const { getUsers, setIsLoading } = usersSlice.actions;
+const { setIsLoading, getAuthorizedUser, editSubscribers } = usersSlice.actions;
 
-const getUsersAsync = () => async (dispatch) => {
-   let users = await fetch(`${process.env.REACT_APP_API_URL}users`)
-      .then((res) => res.json())
-      .then(({ data }) => data);
-    dispatch(getUsers(users));
-    dispatch(setIsLoading(false))
+const getAuthorizedUserData = () => async (dispatch) => {
+   const authorizedUser = await getUser("64779e9a885f42b0fbe95c5d");
+   dispatch(getAuthorizedUser(authorizedUser));
+   dispatch(setIsLoading(false));
 };
 
-export { getUsersAsync };
+export { getAuthorizedUserData, editSubscribers, getAuthorizedUser, setIsLoading };
 
 export default usersSlice.reducer;

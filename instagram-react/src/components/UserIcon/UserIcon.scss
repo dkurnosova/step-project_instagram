@@ -1,16 +1,36 @@
 .user-icon {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+   display: flex;
+   margin-bottom: 10px;
 
-    &__avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
+   &__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+   }
 
-    &__name {
-        font-weight: bold;
-    }
+   &__name {
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      color: rgb(38, 38, 38);
+   }
+}
+
+.user-icon-small {
+   display: flex;
+
+   &__avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 7px;
+   }
+
+   &__name {
+      font-weight: 600;
+      font-size: 11px;
+      text-decoration: none;
+      color: rgb(38, 38, 38);
+   }
 }

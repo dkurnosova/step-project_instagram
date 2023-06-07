@@ -1,0 +1,46 @@
+.btn-subscribe {
+   cursor: pointer;
+   margin-top: 20px;
+   padding: 7px 16px;
+   background-color: rgb(239, 239, 239);
+   border: none;
+   border-radius: 8px;
+   font-size: 14px;
+   font-weight: 600;
+
+   &:hover {
+      background-color: rgb(219, 219, 219);
+   }
+}
+
+.btn-subscribe--not-tracked {
+   background-color: rgb(0, 149, 246);
+   color: rgb(255, 255, 255);
+
+   &:hover {
+      background-color: rgb(0, 121, 202);
+   }
+}
+
+.btn-subscribe-small {
+   background-color: transparent;
+   display: inline-block;
+   border: none;
+   color: rgb(38, 38, 38);
+   font-weight: 600;
+   cursor: pointer;
+   font-size: 12px;
+   transition: background-color 0.3s;
+
+   &:hover {
+      color: rgb(133, 133, 133);
+   }
+}
+
+.btn-subscribe-small--not-tracked {
+   color: rgb(0, 149, 246);
+
+   &:hover {
+      color: rgb(19, 96, 160);
+   }
+}

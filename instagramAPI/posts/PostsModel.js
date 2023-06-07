@@ -7,6 +7,12 @@ const postsSchema = new mongoose.Schema({
    },
    photo: Buffer,
    likes: [String],
+   comments: [
+      {
+         userId: String,
+         text: String,
+      },
+   ],
 });
 
 const PostsModel = mongoose.model("posts", postsSchema);

@@ -1,0 +1,22 @@
+.user-list {
+   max-height: 50vh;
+   border: 0.1px solid rgb(232, 232, 232);
+   border-radius: 5%;
+   padding: 10px;
+   width: 250px;
+   margin-bottom: 10px;
+   overflow-y: auto;
+
+   h3 {
+      color: rgb(115, 115, 115);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 15px;
+   }
+}
+.user-link{
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin-bottom: 5px;
+}

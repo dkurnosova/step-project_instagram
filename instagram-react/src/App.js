@@ -1,39 +1,44 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.scss";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
-import { useEffect} from "react";
+import { getAuthorizedUserData } from "./store/slices/usersSlice";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPostsAsync } from "./store/slices/postsSlice";
-import { getUsersAsync } from "./store/slices/usersSlice";
+import Preloader from "./components/Preloder/Preloader";
+import changeUserSubscribers from "./assets/changeUsersSubscribers";
 
 function App() {
-  const usersIsLoading = useSelector((store) => store.users.isLoading);
-  const postsIsLoading = useSelector((store) => store.posts.IsLoading);
-  const dispatch = useDispatch();
+   const isLoading = useSelector((store) => store.users.isLoading);
+   const { subscriptions, _id } = useSelector((store) => store.users.authorizedUser);
+   const dispatch = useDispatch();
 
-  useEffect(() => {
-      try {
-        dispatch(getPostsAsync());
-        dispatch(getUsersAsync());
-      } catch (err) {
-        console.log(err);
-    }
-   }, [dispatch]);
+   useEffect(() => {
+      dispatch(getAuthorizedUserData());
+   }, []);
+
+   useEffect(() => {
+      if (_id) {
+         const changeData = async () => {
+            await changeUserSubscribers(_id, subscriptions);
+         };
+         changeData();
+      }
+   }, [subscriptions]);
 
    return (
-      <>
-         {usersIsLoading || postsIsLoading ? (
-            <div className="preloader">
-               <div className="loader"></div>
-            </div>
+      <BrowserRouter>
+         {isLoading ? (
+            <Preloader />
          ) : (
-            <BrowserRouter>
-               <div className="App">
-                  <AppRoutes />
-               </div>
-            </BrowserRouter>
+            <div className="App">
+               <header className="header">
+                  <img src="./img/logo.png" alt="logo" />
+               </header>
+               <AppRoutes />
+            </div>
          )}
-      </>
+      </BrowserRouter>
    );
 }
 
