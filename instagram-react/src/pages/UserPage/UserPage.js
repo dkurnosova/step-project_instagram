@@ -51,38 +51,47 @@ const UserPage = () => {
          {isLoading ? (
             <Preloader />
          ) : (
-            <main className="user-page">
-               <header>
-                  <img className="user-page__icon" src={decodeImageData(icon)} alt="icon" />
-                  <h2>{name}</h2>
-                  {_id !== authorizedUserId && (
-                     <BtnSubscribe
-                        onClick={() => {
-                           dispatch(editSubscribers(_id));
-                        }}
-                        isTracked={isTracked}
-                     />
-                  )}
+            <>
+               <header
+                  className="header"
+                  onClick={() => {
+                     navigate("/");
+                  }}>
+                  <img src="./img/logo.png" alt="logo" />
                </header>
-               <section>
-                  {postsData.map((post) => {
-                     const { _id } = post;
-                     return (
-                        <div className="post-img" key={`post-img-${_id}`}>
-                           <PostImg post={post} setIsOpenModal={setIsOpenModal} setModalData={setModalData} />
+               <main className="user-page">
+                  <header>
+                     <img className="user-page__icon" src={decodeImageData(icon)} alt="icon" />
+                     <h2>{name}</h2>
+                     {_id !== authorizedUserId && (
+                        <BtnSubscribe
+                           onClick={() => {
+                              dispatch(editSubscribers(_id));
+                           }}
+                           isTracked={isTracked}
+                        />
+                     )}
+                  </header>
+                  <section>
+                     {postsData.map((post) => {
+                        const { _id } = post;
+                        return (
+                           <div className="post-img" key={`post-img-${_id}`}>
+                              <PostImg post={post} setIsOpenModal={setIsOpenModal} setModalData={setModalData} />
+                           </div>
+                        );
+                     })}
+                  </section>
+                  {posts.length === 0 && (
+                     <div className="no-posts">
+                        <div className="no-posts__img">
+                           <img src="./img/icon-camera.png" alt="" />
                         </div>
-                     );
-                  })}
-               </section>
-               {posts.length === 0 && (
-                  <div className="no-posts">
-                     <div className="no-posts__img">
-                        <img src="./img/icon-camera.png" alt="" />
+                        <p>Ще немає дописів</p>
                      </div>
-                     <p>Ще немає дописів</p>
-                  </div>
-               )}
-            </main>
+                  )}
+               </main>
+            </>
          )}
          {isOpenModal && (
             <Modal isTracked={isTracked} user={user} setIsOpenModal={setIsOpenModal} modalData={modalData} />

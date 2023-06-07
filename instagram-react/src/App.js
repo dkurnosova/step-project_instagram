@@ -32,9 +32,6 @@ function App() {
             <Preloader />
          ) : (
             <div className="App">
-               <header className="header">
-                  <img src="./img/logo.png" alt="logo" />
-               </header>
                <AppRoutes />
             </div>
          )}
